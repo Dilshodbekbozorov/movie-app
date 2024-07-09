@@ -1,18 +1,46 @@
+import { Component } from 'react'
 import './movies-add-form.css'
 
-function MoviesAddForm() {
-  return (
-    <div className='movies-add-form'>
-      <h3>Yangi kino qo'shish</h3>
-      <form>
-        <input type="text" className='form-control new-post-label' placeholder='Qanday kino?'/>
-        <input type="text" className='form-control new-post-label' placeholder="Nechi marotaba ko'rilgan?" />
-        <button type='submit' className='btn btn-outline-dark'>
-            Qo'shish
-        </button>
-      </form>
-    </div>
-  )
+class MoviesAddForm extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '',
+      views: '',
+    }
+  }
+
+changeHandlerInput = (e) => {
+  this.setState({
+    [e.target.name]: e.target.value,
+  })
+} 
+
+addFomrHandler = e => {
+  e.preventDefault()
+  this.props.addForm({name: this.state.name, views: this.state.views})
+  this.setState({
+    name: '',
+    views: '',
+  })
 }
+  render() {
+    const { name, views } = this.state
+    // const { addForm } = this.props
+    return (
+      <div className='movies-add-form'>
+        <h3>Yangi kino qo'shish</h3>
+        <form className='add-form d-flex' onSubmit={this.addFomrHandler}>
+          <input type="text" className='form-control new-post-label' placeholder='Qanday kino?' onChange={this.changeHandlerInput} name='name' value={name} />
+          <input type="text" className='form-control new-post-label' placeholder="Nechi marotaba ko'rilgan?" onChange={this.changeHandlerInput} name='views' value={views} />
+          <button type='submit' className='btn btn-outline-dark'>
+              Qo'shish
+          </button>
+        </form>
+      </div>
+    )
+  }
+}
+
 
 export default MoviesAddForm
