@@ -26,7 +26,7 @@ class MovieListItem extends Component{
       <span onClick={onToggleProp} className="list-group-item-label" data-toggle="like">
         {name}
       </span>
-      <input type="number" className="list-group-item-input" defaultValue={viewer} />
+      <input type="number" className="list-group-item-input" defaultValue={viewer} disabled />
       <div className="d-flex justify-content-center align-items-center">
         <button type='button' className='btn-cookie btn-sm' onClick={onToggleProp} data-toggle="favourite">
             <i className='fas fa-cookie'></i>
